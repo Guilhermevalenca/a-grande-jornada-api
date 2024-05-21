@@ -11,4 +11,5 @@ Route::get('/', function() {
 	return ['ola'=>'hello'];
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/formAPI.php';
