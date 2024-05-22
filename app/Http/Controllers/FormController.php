@@ -16,9 +16,10 @@ class FormController extends Controller
      */
     public function index()
     {
-        //
+        return Form::where('user_id', '=', auth()->id())
+            ->with('questions.options')
+            ->get();
     }
-
     /**
      * Store a newly created resource in storage.
      */

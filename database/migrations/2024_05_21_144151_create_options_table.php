@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('options', function (Blueprint $table) {
             $table->id();
-            $table->text('title');
+            $table->text('title')
+                ->nullable();
             $table->boolean('isOpen');
             $table->boolean('correctAlternative');
             $table->foreignId('question_id')

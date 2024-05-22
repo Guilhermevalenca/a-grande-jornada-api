@@ -9,6 +9,7 @@ Route::prefix('form')
     ->whereNumber('form')
     ->group(function () {
 
+        Route::get('', 'index');
         Route::post('', 'store');
 
     });
