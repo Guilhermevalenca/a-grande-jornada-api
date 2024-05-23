@@ -75,6 +75,7 @@ class FormController extends Controller
      */
     public function destroy(Form $form)
     {
-        //
+        $form->delete();
+        return response(true, 200);
     }
 }

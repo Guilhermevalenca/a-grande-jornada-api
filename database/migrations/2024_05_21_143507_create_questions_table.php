@@ -16,7 +16,9 @@ return new class extends Migration
             $table->longText('title');
             $table->foreignId('form_id')
                 ->references('id')
-                ->on('forms');
+                ->on('forms')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

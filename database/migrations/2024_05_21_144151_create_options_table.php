@@ -19,7 +19,9 @@ return new class extends Migration
             $table->boolean('correctAlternative');
             $table->foreignId('question_id')
                 ->references('id')
-                ->on('questions');
+                ->on('questions')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
