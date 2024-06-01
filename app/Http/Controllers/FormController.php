@@ -16,9 +16,13 @@ class FormController extends Controller
      */
     public function index()
     {
-        return Form::where('user_id', '=', auth()->id())
+        $forms = Form::where('user_id', '=', auth()->id())
             ->with('questions.options')
-            ->get();
+            ->paginate(5);
+        return response([
+            'forms' => $forms,
+            'all' => Form::paginate(10)->lastPage()
+        ], 200);
     }
     /**
      * Store a newly created resource in storage.
@@ -26,7 +30,6 @@ class FormController extends Controller
     public function store(StoreFormRequest $request)
     {
         $validation = $request->validated();
-        $errorMessage = [];
         try {
             DB::transaction(function () use ($validation) {
                 $form = Form::create([
@@ -48,7 +51,7 @@ class FormController extends Controller
             ], 201);
         } catch (\Exception | QueryException | ValidationException $error) {
             return response([
-                'success' => $error,
+                'success' => false,
                 'error' => $error
             ], 400);
         }
@@ -67,7 +70,11 @@ class FormController extends Controller
      */
     public function update(UpdateFormRequest $request, Form $form)
     {
-        //
+        $validation = $request->validated();
+        $form->update([
+            'title' => $validation['title']
+        ]);
+        return response(true, 200);
     }
 
     /**

@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Form;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Form>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Question>
  */
-class FormFactory extends Factory
+class QuestionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +18,8 @@ class FormFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->text(30),
-            'user_id' => 1
+            'title' => fake()->text(),
+            'form_id' => Form::factory()
         ];
     }
 }
