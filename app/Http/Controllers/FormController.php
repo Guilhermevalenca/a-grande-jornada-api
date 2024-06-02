@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IndexFormRequest;
 use App\Http\Requests\StoreFormRequest;
 use App\Http\Requests\UpdateFormRequest;
 use App\Models\Form;
@@ -17,6 +18,7 @@ class FormController extends Controller
     public function index()
     {
         $forms = Form::where('user_id', '=', auth()->id())
+            ->orderBy('updated_at', 'desc')
             ->with('questions.options')
             ->paginate(5);
         return response([
