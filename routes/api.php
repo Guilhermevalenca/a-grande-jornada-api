@@ -13,3 +13,4 @@ Route::get('/', function() {
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/formAPI.php';
+require __DIR__ . '/profileApi.php';
