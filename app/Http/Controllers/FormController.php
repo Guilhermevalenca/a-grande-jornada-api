@@ -19,8 +19,7 @@ class FormController extends Controller
     {
         $forms = Form::where('user_id', '=', auth()->id())
             ->orderBy('updated_at', 'desc')
-            ->with('questions.options')
-            ->paginate(5);
+            ->paginate(10);
         return response([
             'forms' => $forms,
             'all' => Form::paginate(10)->lastPage()
@@ -40,7 +39,8 @@ class FormController extends Controller
                 ]);
                 foreach ($validation['questions'] as $questionData) {
                     $question = $form->questions()->create([
-                        'title' => $questionData['title']
+                        'title' => $questionData['title'],
+                        'type' => $questionData['type']
                     ]);
 
                     foreach ($questionData['options'] as $optionData) {
@@ -64,7 +64,10 @@ class FormController extends Controller
      */
     public function show(Form $form)
     {
-        //
+        $questions = $form->questions()
+            ->with('options')
+            ->get();
+        return response($questions, 200);
     }
 
     /**
@@ -74,7 +77,8 @@ class FormController extends Controller
     {
         $validation = $request->validated();
         $form->update([
-            'title' => $validation['title']
+            'title' => $validation['title'],
+            'type' => $validation['type']
         ]);
         return response(true, 200);
     }

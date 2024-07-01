@@ -21,7 +21,7 @@ class FormSeeder extends Seeder
                 Question::factory(30)
                     ->create(['form_id' => $form->id])
                     ->each(function ($question) {
-                       Option::factory(6)
+                       Option::factory(30)
                            ->create(['question_id' => $question->id]);
                     });
             });

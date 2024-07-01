@@ -34,6 +34,7 @@ Route::prefix('form')
     ->group(function () {
 
         Route::get('', 'index');
+        Route::get('{form}', 'show');
         Route::post('', 'store');
         Route::patch('{form}','update');
         Route::delete('{form}', 'destroy');

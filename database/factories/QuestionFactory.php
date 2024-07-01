@@ -19,7 +19,8 @@ class QuestionFactory extends Factory
     {
         return [
             'title' => fake()->text(),
-            'form_id' => Form::factory()
+            'form_id' => Form::factory(),
+            'type' => fake()->randomElement(['only', 'multiple', 'isOpen'])
         ];
     }
 }

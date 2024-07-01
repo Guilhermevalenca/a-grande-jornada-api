@@ -19,8 +19,7 @@ class OptionFactory extends Factory
     {
         return [
             'title' => fake()->text(100),
-            'isOpen' => false,
-            'correctAlternative' => false,
+            'correctAlternative' => fake()->boolean,
             'question_id' => Question::factory()
         ];
     }

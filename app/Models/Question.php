@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Question extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'form_id'];
+    protected $fillable = ['title', 'form_id', 'type'];
 
     public function form(): BelongsTo
     {

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->text('title')
                 ->nullable();
-            $table->boolean('isOpen');
             $table->boolean('correctAlternative');
             $table->foreignId('question_id')
                 ->references('id')

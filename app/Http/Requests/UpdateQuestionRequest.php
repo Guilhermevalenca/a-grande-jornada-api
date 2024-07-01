@@ -25,10 +25,10 @@ class UpdateQuestionRequest extends FormRequest
             'id' => ['int', 'required', 'exists:App\Models\Question,id'],
             'title' => ['string', 'required'],
             'form_id' => ['int', 'required', 'exists:App\Models\Form,id'],
+            'type' => ['required', 'in:isOpen,only,multiple'],
             'options' => ['array', 'required'],
             'options.*.id' => ['nullable', 'int', 'exists:App\Models\Option,id'],
             'options.*.title' => ['string', 'nullable'],
-            'options.*.isOpen' => ['required', 'boolean'],
             'options.*.correctAlternative' => ['required', 'boolean']
         ];
     }

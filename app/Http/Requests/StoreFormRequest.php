@@ -25,9 +25,9 @@ class StoreFormRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'questions' => ['required', 'array'],
             'questions.*.title' => ['required', 'string'],
-            'questions.*.options' => ['required', 'array'],
+            'questions.*.type' => ['required', 'in:isOpen,only,multiple'],
+            'questions.*.options' => ['array'],
             'questions.*.options.*.title' => ['string', 'nullable'],
-            'questions.*.options.*.isOpen' => ['required', 'boolean'],
             'questions.*.options.*.correctAlternative' => ['required', 'boolean']
         ];
     }
